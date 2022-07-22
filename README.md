@@ -10,6 +10,9 @@
 
 > Costura fody v5.7.0
 
+# OtServerBr and Canary
+- This tool was created to make development on Canary and OtServerBe easier, but since it's a client side modification, won't generate any errors on whatever OT base you use.
+
 # Languages
 - On the current version, there is two language options on this tool that can be switched any time you want.
 > Portuguese by Marcosvf132
