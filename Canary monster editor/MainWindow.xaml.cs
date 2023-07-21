@@ -322,49 +322,36 @@ namespace Canary_monster_editor
                                 }
 
                                 uint parsedUint = 0;
-                                if (ShowLookTypeEx_textbox.Text.Length != 0 || ShowLookTypeEx_textbox.Text == "0") {
-                                    uint.TryParse(ShowLookTypeEx_textbox.Text, out parsedUint);
-                                    boss.AppearanceType.Itemtype = parsedUint;
+                                uint.TryParse(ShowLookType_textbox.Text, out parsedUint);
+                                boss.AppearanceType.Outfittype = parsedUint;
+                                parsedUint = 0;
 
-                                    boss.AppearanceType.ClearOutfitaddon();
-                                    boss.AppearanceType.ClearOutfittype();
-                                    if (boss.AppearanceType.Colors != null) {
-                                        boss.AppearanceType.Colors.ClearLookhead();
-                                        boss.AppearanceType.Colors.ClearLookbody();
-                                        boss.AppearanceType.Colors.ClearLooklegs();
-                                        boss.AppearanceType.Colors.ClearLookfeet();
-                                    }
-                                } else {
-                                    uint.TryParse(ShowLookType_textbox.Text, out parsedUint);
-                                    boss.AppearanceType.Outfittype = parsedUint;
-                                    parsedUint = 0;
+                                uint.TryParse(ShowAddon_textbox.Text, out parsedUint);
+                                boss.AppearanceType.Outfitaddon = parsedUint;
+                                parsedUint = 0;
 
-                                    uint.TryParse(ShowAddon_textbox.Text, out parsedUint);
-                                    boss.AppearanceType.Outfitaddon = parsedUint;
-                                    parsedUint = 0;
-
-                                    if (boss.AppearanceType.Colors == null) {
-                                        boss.AppearanceType.Colors = new Tibia.Protobuf.Staticdata.Colors();
-                                    }
-
-                                    uint.TryParse(ShowLookHead_textbox.Text, out parsedUint);
-                                    boss.AppearanceType.Colors.Lookhead = parsedUint;
-                                    parsedUint = 0;
-
-                                    uint.TryParse(ShowLookBody_textbox.Text, out parsedUint);
-                                    boss.AppearanceType.Colors.Lookbody = parsedUint;
-                                    parsedUint = 0;
-
-                                    uint.TryParse(ShowLookLegs_textbox.Text, out parsedUint);
-                                    boss.AppearanceType.Colors.Looklegs = parsedUint;
-                                    parsedUint = 0;
-
-                                    uint.TryParse(ShowLookFeet_textbox.Text, out parsedUint);
-                                    boss.AppearanceType.Colors.Lookfeet = parsedUint;
-                                    parsedUint = 0;
-
-                                    boss.AppearanceType.ClearItemtype();
+                                if (boss.AppearanceType.Colors == null) {
+                                    boss.AppearanceType.Colors = new Tibia.Protobuf.Staticdata.Colors();
                                 }
+
+                                uint.TryParse(ShowLookHead_textbox.Text, out parsedUint);
+                                boss.AppearanceType.Colors.Lookhead = parsedUint;
+                                parsedUint = 0;
+
+                                uint.TryParse(ShowLookBody_textbox.Text, out parsedUint);
+                                boss.AppearanceType.Colors.Lookbody = parsedUint;
+                                parsedUint = 0;
+
+                                uint.TryParse(ShowLookLegs_textbox.Text, out parsedUint);
+                                boss.AppearanceType.Colors.Looklegs = parsedUint;
+                                parsedUint = 0;
+
+                                uint.TryParse(ShowLookFeet_textbox.Text, out parsedUint);
+                                boss.AppearanceType.Colors.Lookfeet = parsedUint;
+                                parsedUint = 0;
+
+                                uint.TryParse(ShowLookTypeEx_textbox.Text, out parsedUint);
+                                boss.AppearanceType.Itemtype = parsedUint;
                             }
                         } else {
                             return;
