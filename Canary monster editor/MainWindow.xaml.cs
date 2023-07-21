@@ -278,49 +278,37 @@ namespace Canary_monster_editor
                             }
 
                             uint parsedUint = 0;
-                            if (ShowLookTypeEx_textbox.Text.Length != 0 || ShowLookTypeEx_textbox.Text == "0") {
-                                uint.TryParse(ShowLookTypeEx_textbox.Text, out parsedUint);
-                                monster.AppearanceType.Itemtype = parsedUint;
+                            uint.TryParse(ShowLookType_textbox.Text, out parsedUint);
+                            monster.AppearanceType.Outfittype = 0;
+                            parsedUint = 0;
 
-                                monster.AppearanceType.ClearOutfitaddon();
-                                monster.AppearanceType.ClearOutfittype();
-                                if (monster.AppearanceType.Colors != null) {
-                                    monster.AppearanceType.Colors.ClearLookhead();
-                                    monster.AppearanceType.Colors.ClearLookbody();
-                                    monster.AppearanceType.Colors.ClearLooklegs();
-                                    monster.AppearanceType.Colors.ClearLookfeet();
-                                }
-                            } else {
-                                uint.TryParse(ShowLookType_textbox.Text, out parsedUint);
-                                monster.AppearanceType.Outfittype = parsedUint;
-                                parsedUint = 0;
+                            uint.TryParse(ShowAddon_textbox.Text, out parsedUint);
+                            monster.AppearanceType.Outfitaddon = parsedUint;
+                            parsedUint = 0;
 
-                                uint.TryParse(ShowAddon_textbox.Text, out parsedUint);
-                                monster.AppearanceType.Outfitaddon = parsedUint;
-                                parsedUint = 0;
-
-                                if (monster.AppearanceType.Colors == null) {
-                                    monster.AppearanceType.Colors = new Tibia.Protobuf.Staticdata.Colors();
-                                }
-
-                                uint.TryParse(ShowLookHead_textbox.Text, out parsedUint);
-                                monster.AppearanceType.Colors.Lookhead = parsedUint;
-                                parsedUint = 0;
-
-                                uint.TryParse(ShowLookBody_textbox.Text, out parsedUint);
-                                monster.AppearanceType.Colors.Lookbody = parsedUint;
-                                parsedUint = 0;
-
-                                uint.TryParse(ShowLookLegs_textbox.Text, out parsedUint);
-                                monster.AppearanceType.Colors.Looklegs = parsedUint;
-                                parsedUint = 0;
-
-                                uint.TryParse(ShowLookFeet_textbox.Text, out parsedUint);
-                                monster.AppearanceType.Colors.Lookfeet = parsedUint;
-                                parsedUint = 0;
-
-                                monster.AppearanceType.ClearItemtype();
+                            if (monster.AppearanceType.Colors == null) {
+                                 monster.AppearanceType.Colors = new Tibia.Protobuf.Staticdata.Colors();
                             }
+
+                            uint.TryParse(ShowLookHead_textbox.Text, out parsedUint);
+                            monster.AppearanceType.Colors.Lookhead = parsedUint;
+                            parsedUint = 0;
+
+                            uint.TryParse(ShowLookBody_textbox.Text, out parsedUint);
+                            monster.AppearanceType.Colors.Lookbody = parsedUint;
+                            parsedUint = 0;
+
+                            uint.TryParse(ShowLookLegs_textbox.Text, out parsedUint);
+                            monster.AppearanceType.Colors.Looklegs = parsedUint;
+                            parsedUint = 0;
+
+                            uint.TryParse(ShowLookFeet_textbox.Text, out parsedUint);
+                            monster.AppearanceType.Colors.Lookfeet = parsedUint;
+                            parsedUint = 0;
+
+                            uint.TryParse(ShowLookTypeEx_textbox.Text, out parsedUint);
+                            monster.AppearanceType.Itemtype = parsedUint;
+
                         } else if (SelectedListType_t == ListType.Bosses) {
                             Boss boss = GetBossById(SelectedCreature.id);
                             if (boss == null) {
