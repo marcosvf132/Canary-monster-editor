@@ -264,6 +264,10 @@ namespace Canary_monster_editor
             SelectStaticDataFileFilter = 21,
             BossAppearanceDisabled = 22,
             Compile = 23,
+            ExportImport = 24,
+            SelectAll = 25,
+            DeselectAll = 26,
+            ExportSelected = 27,
         }
         public static readonly Dictionary<TranslationDictionaryIndex, string> TranslationDictionary_portuguese = new Dictionary<TranslationDictionaryIndex, string>
         {
@@ -291,6 +295,10 @@ namespace Canary_monster_editor
             [TranslationDictionaryIndex.SelectStaticDataFileFilter] = "Arquivo DAT (*.dat)|*.dat",
             [TranslationDictionaryIndex.BossAppearanceDisabled] = "Os dados de aparencia dos chefes não estão disponivels pois sua versão de client é inferior a 12.90.",
             [TranslationDictionaryIndex.Compile] = "Compilar",
+            [TranslationDictionaryIndex.ExportImport] = "Exportar/Importar",
+            [TranslationDictionaryIndex.SelectAll] = "Selecionar Todos",
+            [TranslationDictionaryIndex.DeselectAll] = "Desmarcar Todos",
+            [TranslationDictionaryIndex.ExportSelected] = "Exportar Selecionados"
         };
         public static readonly Dictionary<TranslationDictionaryIndex, string> TranslationDictionary_english = new Dictionary<TranslationDictionaryIndex, string>
         {
@@ -318,6 +326,10 @@ namespace Canary_monster_editor
             [TranslationDictionaryIndex.SelectStaticDataFileFilter] = "DAT file (*.dat)|*.dat",
             [TranslationDictionaryIndex.BossAppearanceDisabled] = "The bosses appearances data are disabled due to your client version being lower then 12.90.",
             [TranslationDictionaryIndex.Compile] = "Compile",
+            [TranslationDictionaryIndex.ExportImport] = "Export/Import",
+            [TranslationDictionaryIndex.SelectAll] = "Select All",
+            [TranslationDictionaryIndex.DeselectAll] = "Deselect All",
+            [TranslationDictionaryIndex.ExportSelected] = "Export Selected"
         };
         public static string GetCultureText(TranslationDictionaryIndex index)
         {

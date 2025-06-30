@@ -5,7 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Canary_monster_editor"
         mc:Ignorable="d"
-        Title="Canary monster editor" MinHeight="205" Height="455" MinWidth="400" Width="800" Background="{x:Null}" AllowsTransparency="True" WindowStyle="None" ResizeMode="CanResizeWithGrip">
+        Title="Canary monster editor" 
+        MinHeight="455" MinWidth="800" 
+        Height="455" Width="800" 
+        Background="{x:Null}" 
+        AllowsTransparency="True" 
+        WindowStyle="None" 
+        ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <DataTemplate x:Key="MainListDataTemplate">
             <Grid Margin="0,2,0,2">
@@ -37,11 +44,109 @@
             <RowDefinition Height="75"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="150" Width="220" MaxWidth="220"/>
+            <ColumnDefinition MinWidth="150" Width="220" MaxWidth="400"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Margin="0,0,10,0" Grid.Row="4" Grid.Column="1" Grid.RowSpan="2" Background="#FF151518">
+        <Grid Grid.ColumnSpan="2" Background="#FF18191D">
+            <Rectangle MouseDown="MouseDownToDrag_var" Fill="White" Opacity="0"/>
+            <StackPanel Orientation="Horizontal" Margin="2,0,0,0">
+                <Grid>
+                    <Rectangle x:Name="MainFacebook_rectangle" MouseDown="MainURIMouseDown_rectangle" Width="20" Height="20" Fill="#FF3B5998"/>
+                    <TextBlock Text="f" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial" Foreground="White" IsHitTestVisible="False" FontWeight="Normal" FontSize="18"/>
+                </Grid>
+                <Grid Margin="2,0,0,0">
+                    <Rectangle x:Name="MainGithub_rectangle" MouseDown="MainURIMouseDown_rectangle" Width="20" Height="20" Fill="Black"/>
+                    <Image Source="/github-logo.png" Width="12" Height="12" IsHitTestVisible="False" />
+                </Grid>
+                <Grid Margin="2,0,0,0">
+                    <Rectangle x:Name="MainDiscord_rectangle" MouseDown="MainURIMouseDown_rectangle" Width="20" Height="20" Fill="#FF5165F6"/>
+                    <Image Source="/discord-logo.png" Width="18" Height="18" IsHitTestVisible="False" />
+                </Grid>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,2,0" FlowDirection="RightToLeft">
+                <Grid>
+                    <Rectangle x:Name="MainClose_rectangle" MouseUp="MainCloseMouseUp_rectangle" Width="15" Height="15" Fill="#FFF6796F"/>
+                    <TextBlock Text="X" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial" Foreground="White" IsHitTestVisible="False"/>
+                </Grid>
+                <Grid Margin="2,0,0,0">
+                    <Rectangle x:Name="MainResize_rectangle" MouseUp="MainResizeMouseUp_rectangle" Width="15" Height="15" Fill="#FFCAB591"/>
+                    <TextBlock Text="❏" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial" Foreground="White" IsHitTestVisible="False"/>
+                </Grid>
+                <Grid Margin="2,0,0,0">
+                    <Rectangle x:Name="MainMinimize_rectangle" MouseUp="MainMinimizeMouseUp_rectangle" Width="15" Height="15" Fill="#FFC38F61"/>
+                    <TextBlock Text="_" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Arial" Foreground="White" IsHitTestVisible="False"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.ColumnSpan="2" Grid.Row="1" Margin="0,0,0,0" Background="#FF232020">
+            <Rectangle MouseDown="MouseDownToDrag_var" Fill="White" Opacity="0"/>
+            <StackPanel Orientation="Horizontal" Margin="2,0,20,0">
+                <Grid Width="75" Height="50">
+                    <Rectangle x:Name="MainButton_rectangle" MouseDown="MainButtonMouseDown_rectangle" MouseUp="MainButtonMouseUp_rectangle" MouseLeave="MainButtonMouseLeave_rectangle" Fill="#FFFFA000" Opacity="0.75"/>
+                    <TextBlock x:Name="MainButon_textblock" Text="MainButon_textblock" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontFamily="Segoe UI Symbol" IsHitTestVisible="False"/>
+                </Grid>
+                <Grid Width="70" Height="50" Margin="2,0,0,0">
+                    <Rectangle x:Name="MonsterButton_rectangle" MouseUp="SecondaryButtonMouseUp_rectangle" MouseDown="SecondaryButtonMouseDown_rectangle" MouseEnter="SecondaryButtonMouseEnter_rectangle" MouseLeave="SecondaryButtonMouseLeave_rectangle" Fill="#FFFF9A00" Opacity="0"/>
+                    <TextBlock x:Name="MonsterButon_textblock" Text="MonsterButon_textblock" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontFamily="Segoe UI Symbol" IsHitTestVisible="False"/>
+                </Grid>
+                <Grid Width="70" Height="50" Margin="2,0,0,0">
+                    <Rectangle x:Name="BossButton_rectangle" MouseUp="SecondaryButtonMouseUp_rectangle" MouseDown="SecondaryButtonMouseDown_rectangle" MouseEnter="SecondaryButtonMouseEnter_rectangle" MouseLeave="SecondaryButtonMouseLeave_rectangle" Fill="#FFFF9A00" Opacity="0"/>
+                    <TextBlock x:Name="BossButon_textblock" Text="BossButon_textblock" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontFamily="Segoe UI Symbol" IsHitTestVisible="False"/>
+                </Grid>
+                <Grid Width="120" Height="50" Margin="10,0,0,0">
+                    <Rectangle x:Name="ExportImportButton_rectangle" 
+                            MouseUp="ExportImportButtonMouseUp_rectangle" 
+                            MouseDown="SecondaryButtonMouseDown_rectangle" 
+                            MouseEnter="SecondaryButtonMouseEnter_rectangle" 
+                            MouseLeave="SecondaryButtonMouseLeave_rectangle" 
+                            Fill="#FFFF9A00" Opacity="0"/>
+                    <TextBlock x:Name="ExportImportButon_textblock" 
+                            Text="Export/Import" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            Foreground="White" 
+                            FontWeight="Bold" 
+                            FontSize="12"
+                            FontFamily="Segoe UI Symbol" 
+                            TextWrapping="Wrap"
+                            IsHitTestVisible="False"/>
+                </Grid>
+            </StackPanel>
+            <Grid HorizontalAlignment="Right">
+                <Rectangle Fill="#FF18191D" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stroke="Black"/>
+                <StackPanel VerticalAlignment="Center" Margin="0,0,2,0">
+                    <Image x:Name="PTBR_image" MouseDown="CultureMouseDown_image" Source="/Portuguese-flag.png" Height="16" Width="16" Margin="0,0,0,5"/>
+                    <Image x:Name="ENUS_image" MouseDown="CultureMouseDown_image" Source="/English-flag.png" Height="16" Width="16" Opacity="0.5"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <Grid Margin="0" Grid.Row="2" Grid.ColumnSpan="2">
+            <Rectangle Fill="#FFF39C12" VerticalAlignment="Bottom" Height="2"/>
+        </Grid>
+
+        <Grid Margin="0,0,0,0" Grid.ColumnSpan="2" Grid.Row="3" Background="#FF18191D">
+            <Rectangle MouseDown="MouseDownToDrag_var" Fill="White" Opacity="0"/>
+            <TextBlock x:Name="FileOpenned_textblock" Text="FileOpenned_textblock" Foreground="#FF757577" VerticalAlignment="Center" Margin="5,0,0,0" FontSize="10" IsHitTestVisible="False"/>
+            <TextBlock x:Name="LastSave_textblock" Text="LastSave_textblock" Foreground="#FF757577" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="10" HorizontalAlignment="Right" IsHitTestVisible="False"/>
+            <Rectangle Height="1" Fill="#FF383838" VerticalAlignment="Bottom" IsHitTestVisible="False"/>
+        </Grid>
+
+        <Grid Grid.Row="4" Background="#FF18191D">
+            <Rectangle Stroke="#FF2E2A2A" IsHitTestVisible="False"/>
+            <Grid VerticalAlignment="Top">
+                <Rectangle Fill="#FF232020" MouseDown="MouseDownToDrag_var" Height="35" Stroke="#FF2E2A2A"/>
+                <TextBlock x:Name="MainList_textblock" Text="MainList_textblock" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF757577" FontWeight="Bold" FontFamily="Segoe UI Symbol" IsHitTestVisible="False"/>
+            </Grid>
+            <ListBox x:Name="MainList_listbox" SelectionChanged="MainListSelectionChange_listbox" Margin="0,35,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemTemplate="{DynamicResource MainListDataTemplate}" VerticalContentAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=2}"/>
+        </Grid>
+
+        <GridSplitter Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Stretch" 
+                      Width="3" Background="#02FFFFFF" ResizeDirection="Columns" ShowsPreview="True"/>
+
+        <Grid Grid.Row="4" Grid.Column="1" Grid.RowSpan="2" Background="#FF151518">
             <Rectangle MouseDown="MouseDownToDrag_var" Fill="White" Opacity="0"/>
             <TextBlock x:Name="BossAppearance_textblock" Text="BossAppearance_textblock" Margin="0,5,5,0" Foreground="White" FontWeight="Normal" FontSize="10" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FFA62F26" Padding="5,5,5,5" Opacity="0"/>
             <StackPanel>
@@ -106,85 +211,7 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.ColumnSpan="2" Background="#FF18191D">
-            <Rectangle MouseDown="MouseDownToDrag_var" Fill="White" Opacity="0"/>
-            <StackPanel Orientation="Horizontal" Margin="15,0,0,0">
-                <Grid>
-                    <Rectangle x:Name="MainFacebook_rectangle" MouseDown="MainURIMouseDown_rectangle" Width="20" Height="20" Fill="#FF3B5998"/>
-                    <TextBlock Text="f" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial" Foreground="White" IsHitTestVisible="False" FontWeight="Normal" FontSize="18"/>
-                </Grid>
-                <Grid Margin="2,0,0,0">
-                    <Rectangle x:Name="MainGithub_rectangle" MouseDown="MainURIMouseDown_rectangle" Width="20" Height="20" Fill="Black"/>
-                    <Image Source="/github-logo.png" Width="12" Height="12" IsHitTestVisible="False" />
-                </Grid>
-                <Grid Margin="2,0,0,0">
-                    <Rectangle x:Name="MainDiscord_rectangle" MouseDown="MainURIMouseDown_rectangle" Width="20" Height="20" Fill="#FF5165F6"/>
-                    <Image Source="/discord-logo.png" Width="18" Height="18" IsHitTestVisible="False" />
-                </Grid>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,0,15,0" FlowDirection="RightToLeft">
-                <Grid>
-                    <Rectangle x:Name="MainClose_rectangle" MouseUp="MainCloseMouseUp_rectangle" Width="15" Height="15" Fill="#FFF6796F"/>
-                    <TextBlock Text="X" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial" Foreground="White" IsHitTestVisible="False"/>
-                </Grid>
-                <Grid Margin="2,0,0,0">
-                    <Rectangle x:Name="MainResize_rectangle" MouseUp="MainResizeMouseUp_rectangle" Width="15" Height="15" Fill="#FFCAB591"/>
-                    <TextBlock Text="❏" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial" Foreground="White" IsHitTestVisible="False"/>
-                </Grid>
-                <Grid Margin="2,0,0,0">
-                    <Rectangle x:Name="MainMinimize_rectangle" MouseUp="MainMinimizeMouseUp_rectangle" Width="15" Height="15" Fill="#FFC38F61"/>
-                    <TextBlock Text="_" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Arial" Foreground="White" IsHitTestVisible="False"/>
-                </Grid>
-            </StackPanel>
-        </Grid>
-
-        <Grid Grid.ColumnSpan="2" Grid.Row="1" Margin="5,0,5,0" Background="#FF232020">
-            <Rectangle MouseDown="MouseDownToDrag_var" Fill="White" Opacity="0"/>
-            <StackPanel Orientation="Horizontal" Margin="20,0,20,0">
-                <Grid Width="75" Height="50">
-                    <Rectangle x:Name="MainButton_rectangle" MouseDown="MainButtonMouseDown_rectangle" MouseUp="MainButtonMouseUp_rectangle" MouseLeave="MainButtonMouseLeave_rectangle" Fill="#FFFFA000" Opacity="0.75"/>
-                    <TextBlock x:Name="MainButon_textblock" Text="MainButon_textblock" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontFamily="Segoe UI Symbol" IsHitTestVisible="False"/>
-                </Grid>
-                <Grid Width="70" Height="50" Margin="2,0,0,0">
-                    <Rectangle x:Name="MonsterButton_rectangle" MouseUp="SecondaryButtonMouseUp_rectangle" MouseDown="SecondaryButtonMouseDown_rectangle" MouseEnter="SecondaryButtonMouseEnter_rectangle" MouseLeave="SecondaryButtonMouseLeave_rectangle" Fill="#FFFF9A00" Opacity="0"/>
-                    <TextBlock x:Name="MonsterButon_textblock" Text="MonsterButon_textblock" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontFamily="Segoe UI Symbol" IsHitTestVisible="False"/>
-                </Grid>
-                <Grid Width="70" Height="50" Margin="2,0,0,0">
-                    <Rectangle x:Name="BossButton_rectangle" MouseUp="SecondaryButtonMouseUp_rectangle" MouseDown="SecondaryButtonMouseDown_rectangle" MouseEnter="SecondaryButtonMouseEnter_rectangle" MouseLeave="SecondaryButtonMouseLeave_rectangle" Fill="#FFFF9A00" Opacity="0"/>
-                    <TextBlock x:Name="BossButon_textblock" Text="BossButon_textblock" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontFamily="Segoe UI Symbol" IsHitTestVisible="False"/>
-                </Grid>
-            </StackPanel>
-            <Grid HorizontalAlignment="Right">
-                <Rectangle Fill="#FF18191D" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stroke="Black"/>
-                <StackPanel VerticalAlignment="Center" Margin="2">
-                    <Image x:Name="PTBR_image" MouseDown="CultureMouseDown_image" Source="/Portuguese-flag.png" Height="16" Width="16" Margin="0,0,0,5"/>
-                    <Image x:Name="ENUS_image" MouseDown="CultureMouseDown_image" Source="/English-flag.png" Height="16" Width="16" Opacity="0.5"/>
-                </StackPanel>
-            </Grid>
-        </Grid>
-
-        <Grid Margin="7,0,7,0" Grid.Row="2" Grid.ColumnSpan="2">
-            <Rectangle Fill="#FFF39C12" MouseDown="MouseDownToDrag_var" VerticalAlignment="Bottom" Height="2"/>
-        </Grid>
-
-        <Grid Grid.Row="4" Margin="10,0,0,0" Background="#FF18191D">
-            <Rectangle Stroke="#FF2E2A2A" IsHitTestVisible="False"/>
-            <Grid VerticalAlignment="Top">
-                <Rectangle Fill="#FF232020" MouseDown="MouseDownToDrag_var" Height="35" Stroke="#FF2E2A2A"/>
-                <TextBlock x:Name="MainList_textblock" Text="MainList_textblock" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF757577" FontWeight="Bold" FontFamily="Segoe UI Symbol" IsHitTestVisible="False"/>
-            </Grid>
-            <ListBox x:Name="MainList_listbox" SelectionChanged="MainListSelectionChange_listbox" Margin="0,35,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemTemplate="{DynamicResource MainListDataTemplate}" VerticalContentAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=2}"/>
-        </Grid>
-        <GridSplitter Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="3" Foreground="{x:Null}" ShowsPreview="True" ResizeDirection="Columns" ResizeBehavior="CurrentAndNext" Background="#02FFFFFF"/>
-
-        <Grid Margin="10,0,10,0" Grid.ColumnSpan="2" Grid.Row="3" Background="#FF18191D">
-            <Rectangle MouseDown="MouseDownToDrag_var" Fill="White" Opacity="0"/>
-            <TextBlock x:Name="FileOpenned_textblock" Text="FileOpenned_textblock" Foreground="#FF757577" VerticalAlignment="Center" Margin="5,0,0,0" FontSize="10" IsHitTestVisible="False"/>
-            <TextBlock x:Name="LastSave_textblock" Text="LastSave_textblock" Foreground="#FF757577" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="10" HorizontalAlignment="Right" IsHitTestVisible="False"/>
-            <Rectangle Height="1" Fill="#FF383838" VerticalAlignment="Bottom" IsHitTestVisible="False"/>
-        </Grid>
-
-        <Grid Margin="10,0,0,0" Grid.Row="5" Background="#FF18191D">
+        <Grid Grid.Row="5" Background="#FF18191D">
             <Rectangle MouseDown="MouseDownToDrag_var" Fill="White" Opacity="0"/>
             <Rectangle Stroke="#FF2E2A2A" IsHitTestVisible="False"/>
             <StackPanel HorizontalAlignment="Center">
@@ -193,6 +220,5 @@
                 <TextBlock x:Name="ToolVersion_textBlock" Text="ToolVersion_textBlock" HorizontalAlignment="Center" FontSize="10" FontWeight="Normal" FontStyle="Normal" Foreground="#FF9A9A9A" IsHitTestVisible="False"/>
             </StackPanel>
         </Grid>
-
     </Grid>
 </Window>

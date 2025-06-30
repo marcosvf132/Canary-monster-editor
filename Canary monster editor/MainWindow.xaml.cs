@@ -45,7 +45,7 @@ namespace Canary_monster_editor
             InitializeCultureTexts();
         }
 
-        #region 'Monster' and 'bosses' button. (Secondary)
+        #region 'Monster', 'bosses' and "Export/Import" button. (Secondary)
         private void ParseSecondaryButtonClick(string name)
         {
             if (string.IsNullOrEmpty(name)) {
@@ -102,6 +102,17 @@ namespace Canary_monster_editor
                 default:
                     break;
             }
+        }
+        private void ExportImportButtonMouseUp_rectangle(object sender, MouseButtonEventArgs e)
+        {
+            if (Data.GlobalStaticData == null) {
+                MessageBox.Show("Please open a static data file first", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            ExportImportWindow exportImportWindow = new ExportImportWindow();
+            exportImportWindow.Owner = this;
+            exportImportWindow.ShowDialog();
         }
         private void SecondaryButtonMouseEnter_rectangle(object sender, MouseEventArgs e)
         {
@@ -188,6 +199,7 @@ namespace Canary_monster_editor
                         }
 
                         if (!HasGlobalChangeMade) {
+                            MessageBox.Show($"Nothing to compile.", "Error", MessageBoxButton.OK);
                             return;
                         }
 
@@ -590,6 +602,7 @@ namespace Canary_monster_editor
             ShowNew_textblock.Text = GetCultureText(TranslationDictionaryIndex.New);
             ShowSave_textblock.Text = GetCultureText(TranslationDictionaryIndex.Save);
             ToolName_textblock.Text = "Canary monster editor " + GlobalVersion;
+            ExportImportButon_textblock.Text = GetCultureText(TranslationDictionaryIndex.ExportImport);
 
             if (SelectedListType_t == ListType.Monsters) {
                 MainList_textblock.Text = GetCultureText(TranslationDictionaryIndex.Monsters);
@@ -606,7 +619,7 @@ namespace Canary_monster_editor
         #endregion
 
         #region Load and initializers
-        private void ReloadMainListBox()
+        public void ReloadMainListBox()
         {
             if (GlobalStaticData == null) {
                 return;
